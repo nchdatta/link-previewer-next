@@ -2,6 +2,8 @@ import axios from "axios";
 import cheerio from "cheerio";
 import { NextRequest } from "next/server";
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(req: NextRequest) {
     const searchParams = req.nextUrl.searchParams;
     const url = searchParams.get('url');
