@@ -8,7 +8,12 @@ export async function GET(req: NextRequest) {
 
     if (!url) {
         return Response.json({ error: "URL parameter is missing or empty." }, {
-            status: 400
+            status: 400,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            }
         });
     }
 
@@ -27,11 +32,22 @@ export async function GET(req: NextRequest) {
             image: metaImage || '',
         };
 
-        return Response.json(linkPreview);
+        return Response.json(linkPreview, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            }
+        });
     } catch (error) {
         console.error(error);
         return Response.json({ error: 'An error occurred while fetching the link preview.' }, {
-            status: 500
+            status: 500,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            }
         });
     }
 
